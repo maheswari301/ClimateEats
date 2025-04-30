@@ -1,0 +1,1210 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+/* Root variables */
+:root {
+  --primary-color: #4776e6;
+  --primary-light: #8e54e9;
+  --secondary-color: #2ecc71;
+  --secondary-light: #55efc4;
+  --text-dark: #2d3436;
+  --text-light: #636e72;
+  --background-light: #f9fafe;
+  --background-off: #f5f9ff;
+  --card-bg: #ffffff;
+  --error-color: #e74c3c;
+  --success-color: #27ae60;
+  --warning-color: #f39c12;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  --shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.1);
+  --gradient: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--primary-light)
+  );
+}
+
+/* Base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
+  overflow-y: auto;
+}
+
+body {
+  background: var(--gradient);
+  background-size: 400% 400%;
+  animation: gradient-animation 8s ease infinite;
+  min-height: 100vh;
+  height: auto;
+  overflow-y: auto;
+  position: relative;
+}
+
+/* Food entry page wrapper */
+.food-page-wrapper {
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100%;
+  padding: 20px;
+  background-color: #f0f4f9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  overflow-y: auto;
+  height: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scroll-padding-top: 20px;
+}
+
+/* Main container */
+.food-entry-container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.5rem;
+  background: var(--background-light);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Header styles */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.header h2 {
+  margin: 0;
+  font-weight: 700;
+  font-size: 28px;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+}
+
+.header h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 40px;
+  height: 4px;
+  background: var(--gradient);
+  border-radius: 2px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.user-info p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-dark);
+}
+
+.user-name {
+  font-weight: 500;
+  background-color: var(--background-off);
+  padding: 6px 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.highlight {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.logout-btn {
+  padding: 6px 12px;
+  background-color: var(--error-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(231, 76, 60, 0.2);
+}
+
+.logout-btn:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(231, 76, 60, 0.3);
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.tab-btn {
+  padding: 10px 20px;
+  background-color: var(--card-bg);
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  flex: 1;
+  max-width: 200px;
+  position: relative;
+}
+
+.tab-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--gradient);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.tab-btn.active {
+  background-color: var(--card-bg);
+  color: var(--primary-color);
+  box-shadow: 0 4px 15px rgba(71, 118, 230, 0.15);
+  font-weight: 600;
+}
+
+.tab-btn.active::before {
+  opacity: 1;
+}
+
+.tab-btn:hover:not(.active) {
+  background-color: rgba(255, 255, 255, 0.8);
+  transform: translateY(-2px);
+}
+
+/* Tab content */
+.tab-content {
+  width: 100%;
+  display: block;
+  position: relative;
+  overflow: visible;
+  height: auto;
+  margin: 0 auto;
+  background-color: transparent;
+}
+
+/* Results container */
+.check-tab-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 20px;
+  padding: 10px 0;
+  overflow: visible;
+  background-color: transparent;
+}
+
+.weather-suitability-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: transparent;
+}
+
+/* Cards */
+.food-entry-card,
+.result-card {
+  padding: 1.5rem;
+  background-color: var(--card-bg);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  width: 100%;
+  max-width: 100%;
+  transition: all 0.3s ease;
+  overflow: visible;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  z-index: 2;
+}
+
+.food-entry-card:hover,
+.result-card:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+.card-description {
+  margin-top: 0;
+  color: var(--text-dark);
+  margin-bottom: 20px;
+  line-height: 1.5;
+  font-size: 15px;
+  text-align: center;
+  font-weight: 500;
+  width: 100%;
+}
+
+/* Form elements */
+.form-group {
+  margin-bottom: 1.25rem;
+  width: 100%;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+  color: #4a5568;
+  font-size: 0.95rem;
+}
+
+.form-text {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.85rem;
+  color: #718096;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+  color: #000;
+}
+
+.form-input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 4px rgba(71, 118, 230, 0.1);
+  outline: none;
+}
+
+.form-input::placeholder {
+  color: #a0aec0;
+  font-size: 15px;
+}
+
+/* Button */
+.submit-btn {
+  background: var(--gradient);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 16px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 12px rgba(71, 118, 230, 0.2);
+  width: 100%;
+  margin-top: 15px;
+  position: relative;
+  z-index: 1;
+}
+
+.submit-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(71, 118, 230, 0.3);
+}
+
+.submit-btn:disabled {
+  background: linear-gradient(135deg, #bdc3c7, #95a5a6);
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Error message */
+.error-message {
+  padding: 14px;
+  margin-bottom: 24px;
+  background-color: rgba(231, 76, 60, 0.1);
+  color: var(--error-color);
+  border-left: 4px solid var(--error-color);
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+/* Weather card */
+.weather-card {
+  border-top: 4px solid #60a5fa;
+}
+
+.weather-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.weather-main {
+  flex: 1;
+}
+
+.weather-main .temp {
+  font-size: 48px;
+  margin: 0;
+  font-weight: 300;
+  color: var(--primary-color);
+}
+
+.weather-main .condition {
+  font-size: 24px;
+  margin: 8px 0;
+  color: var(--text-dark);
+  font-weight: 500;
+}
+
+.weather-main .category {
+  font-size: 18px;
+  margin: 0;
+  color: var(--text-light);
+  background: var(--background-light);
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+.weather-details {
+  flex: 1;
+  padding-left: 30px;
+  border-left: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.weather-details p {
+  margin: 12px 0;
+  font-size: 15px;
+  color: var(--text-dark);
+}
+
+/* Food info */
+.food-info {
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  width: 100%;
+}
+
+.food-info p {
+  margin: 12px 0;
+  font-size: 15px;
+  color: var(--text-dark);
+}
+
+/* Suitability result */
+.suitability-card {
+  border-top: 4px solid #4776e6;
+}
+
+.suitability-result {
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.suitability-result.suitable {
+  background-color: rgba(46, 204, 113, 0.1);
+  border-left: 4px solid var(--secondary-color);
+}
+
+.suitability-result.not-suitable {
+  background-color: rgba(231, 76, 60, 0.1);
+  border-left: 4px solid var(--error-color);
+}
+
+.suitability-result h4 {
+  margin-top: 0;
+  color: var(--text-dark);
+  font-size: 17px;
+}
+
+.suitability-details {
+  display: flex;
+  gap: 30px;
+  margin-top: 15px;
+}
+
+.suitable {
+  color: var(--success-color);
+  font-weight: 500;
+}
+
+.not-suitable {
+  color: var(--error-color);
+  font-weight: 500;
+}
+
+/* Recommendations */
+.recommendations-card {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 2rem;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.weather-summary {
+  background-color: var(--background-off);
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  overflow: visible;
+  width: 100%;
+}
+
+.weather-summary p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  flex: 1;
+  min-width: 180px;
+}
+
+.recommended-foods {
+  padding-top: 10px;
+  width: 100%;
+}
+
+.recommended-foods h4 {
+  font-size: 16px;
+  margin-bottom: 15px;
+  color: var(--text-dark);
+  font-weight: 600;
+  text-align: center;
+  width: 100%;
+}
+
+.foods-list {
+  overflow: visible;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 15px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  justify-content: center;
+}
+
+.food-item {
+  background-color: var(--background-light);
+  border-radius: 12px;
+  padding: 15px;
+  position: relative;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+  height: auto;
+  min-height: 150px;
+}
+
+.calories-high-item {
+  border-left: 3px solid var(--error-color);
+}
+
+.calories-medium-item {
+  border-left: 3px solid var(--warning-color);
+}
+
+.calories-low-item {
+  border-left: 3px solid var(--success-color);
+}
+
+.food-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.food-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.food-header h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+/* ... existing code ... */
+
+.calories {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 20px;
+  color: white;
+  display: inline-block;
+  white-space: nowrap;
+  min-width: 60px;
+  text-align: center;
+}
+
+.calories-low {
+  background-color: var(--success-color);
+}
+
+.calories-medium {
+  background-color: var(--warning-color);
+}
+
+.calories-high {
+  background-color: var(--error-color);
+}
+
+.food-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+  flex-wrap: nowrap;
+  gap: 8px;
+}
+
+.food-header h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-dark);
+  flex: 1;
+}
+
+.description {
+  flex: 1;
+  margin-bottom: 15px;
+  margin: 0 0 12px 0;
+  font-size: 13px;
+  color: var(--text-light);
+  line-height: 1.5;
+}
+
+.tags {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+.tag.weather {
+  background-color: rgba(71, 118, 230, 0.1);
+  color: var(--primary-color);
+}
+
+.tag.bmi {
+  background-color: rgba(46, 204, 113, 0.1);
+  color: var(--secondary-color);
+}
+
+/* Animations */
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .food-page-wrapper {
+    padding: 10px;
+    width: 100vw;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .food-entry-container {
+    padding: 1.25rem;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .user-info {
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+
+  .user-name {
+    font-size: 13px;
+  }
+
+  .food-entry-card,
+  .result-card {
+    padding: 1.25rem;
+    max-width: 100%;
+  }
+
+  .weather-info {
+    flex-direction: column;
+  }
+
+  .weather-details {
+    margin-top: 15px;
+  }
+
+  .suitability-details {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .foods-list {
+    grid-template-columns: 1fr;
+  }
+
+  .tab-btn {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  .food-item {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .food-page-wrapper {
+    padding: 5px;
+    width: 100vw;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .food-entry-container {
+    padding: 1rem;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .user-info {
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+}
+
+/* Ensure the scrollbar is less intrusive */
+.food-page-wrapper::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+/* Updated to make all content visible on various screen sizes */
+@media (min-width: 992px) {
+  .tab-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  .food-entry-card {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+
+  .weather-suitability-container {
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+  }
+
+  .foods-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .foods-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .food-page-wrapper {
+    padding: 10px;
+    overflow-y: auto;
+    min-height: 100vh;
+    height: auto;
+    width: 100vw;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .food-entry-container {
+    width: 100%;
+    max-width: 100%;
+    padding: 1rem;
+    margin-bottom: 40px;
+    overflow: visible;
+  }
+
+  .foods-list {
+    grid-template-columns: 1fr;
+  }
+
+  .weather-info {
+    flex-direction: column;
+  }
+
+  .weather-details {
+    padding-left: 0;
+    border-left: none;
+    margin-top: 15px;
+  }
+
+  body,
+  html {
+    overflow-y: auto;
+    height: auto;
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  .result-card,
+  .recommendations-card,
+  .suitability-card,
+  .weather-card {
+    overflow: visible;
+    height: auto;
+    min-height: fit-content;
+    max-height: none;
+    display: block;
+    width: 100%;
+  }
+
+  .check-tab-content,
+  .check-tab-recommendations {
+    overflow: visible;
+    height: auto;
+    width: 100%;
+    display: block;
+  }
+}
+
+/* Force scrolling to work properly */
+html {
+  scroll-behavior: smooth;
+  overflow-y: auto;
+  height: auto;
+  overflow-x: hidden;
+  scroll-padding-top: 20px;
+}
+
+/* This ensures the page can scroll properly on all devices */
+@media (max-height: 900px) {
+  .food-page-wrapper {
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+    width: 100%;
+    max-width: 100%;
+    padding: 10px;
+    overflow-x: hidden;
+  }
+
+  body,
+  html {
+    overflow-y: auto;
+    height: auto;
+    overflow-x: hidden;
+  }
+}
+
+/* Fix for the container layout and weather-suitability container */
+.weather-suitability-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  overflow: visible;
+  height: auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* Add class to make content fully visible for long pages */
+.full-height-content {
+  min-height: calc(100vh - 100px);
+  height: auto;
+  overflow: visible;
+  padding-bottom: 80px;
+}
+
+/* Make recommendations section more visible */
+.check-tab-recommendations {
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: 2px solid rgba(0, 0, 0, 0.05);
+  width: 100%;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+}
+
+/* This ensures the scrollbar is visible and works properly */
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Ensure content doesn't get cut off after button click */
+.result-card,
+.weather-card,
+.suitability-card {
+  overflow: visible;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  height: auto;
+}
+
+/* Additional fixes for scrolling issues */
+@media (max-width: 767px) {
+  .food-page-wrapper {
+    padding: 10px;
+    overflow-y: auto;
+    min-height: 100vh;
+    height: auto;
+    width: 100vw;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .food-entry-container {
+    width: 100%;
+    max-width: 100%;
+    padding: 1rem;
+    margin-bottom: 40px;
+    overflow: visible;
+  }
+
+  body,
+  html {
+    overflow-y: auto;
+    height: auto;
+    overflow-x: hidden;
+    width: 100%;
+  }
+}
+
+/* Additional media query for extra-large screens */
+@media (min-width: 1400px) {
+  .food-entry-container {
+    max-width: 1400px;
+  }
+}
+
+/* Fix page display issues */
+.app {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+.page-container {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Fix for result visibility after button click */
+.result-card {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  overflow: visible;
+  margin-top: 20px;
+  display: block;
+}
+
+.suitability-result,
+.weather-info,
+.food-info,
+.recommendations-card,
+.weather-summary,
+.recommended-foods,
+.foods-list {
+  position: relative;
+  z-index: 2;
+  max-height: none;
+  overflow: visible;
+  width: 100%;
+}
+
+/* Weather summary */
+.weather-summary {
+  background-color: var(--background-off);
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  overflow: visible;
+  width: 100%;
+}
+
+/* Weather suitability container */
+.weather-suitability-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  overflow: visible;
+  height: auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* Critical fix for scroll content after suitability check */
+.check-tab-content,
+.check-tab-recommendations {
+  overflow: visible;
+  height: auto;
+  min-height: fit-content;
+  width: 100%;
+  display: block;
+  position: relative;
+  z-index: 2;
+}
+
+/* Fix for result tab display */
+.tab-content.active {
+  display: block;
+  opacity: 1;
+  height: auto;
+  min-height: fit-content;
+  overflow: visible;
+  width: 100%;
+}
+
+/* Fix for smooth scrolling to results */
+html {
+  scroll-behavior: smooth;
+  overflow-y: auto;
+  height: auto;
+  overflow-x: hidden;
+  scroll-padding-top: 20px;
+}
+
+.food-page-wrapper {
+  scroll-behavior: smooth;
+  scroll-padding-top: 20px;
+}
+
+/* Center all containers properly */
+.food-entry-card,
+.result-card,
+.weather-card,
+.suitability-card,
+.recommendations-card,
+.tab-content,
+.weather-suitability-container,
+.check-tab-recommendations,
+.check-tab-content {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+/* Ensure the results are fully visible */
+@media (max-width: 767px) {
+  .food-page-wrapper {
+    padding: 10px;
+    overflow-y: auto;
+    min-height: 100vh;
+    height: auto;
+    width: 100vw;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .food-entry-container {
+    width: 100%;
+    max-width: 100%;
+    padding: 1rem;
+    margin-bottom: 40px;
+    overflow: visible;
+  }
+
+  body,
+  html {
+    overflow-y: auto;
+    height: auto;
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  .result-card,
+  .recommendations-card,
+  .suitability-card,
+  .weather-card {
+    overflow: visible;
+    height: auto;
+    min-height: fit-content;
+    max-height: none;
+    display: block;
+    width: 100%;
+  }
+
+  .check-tab-content,
+  .check-tab-recommendations {
+    overflow: visible;
+    height: auto;
+    width: 100%;
+    display: block;
+  }
+}
+
+/* Check tab content and results */
+.check-tab-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 20px;
+  padding: 10px 0;
+  overflow: visible;
+}
+
+.weather-suitability-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* Card styling */
+.result-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  word-break: break-word;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .weather-suitability-container {
+    grid-template-columns: 1fr;
+  }
+
+  .food-page-wrapper {
+    padding: 10px;
+  }
+
+  .food-entry-container {
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+}
+
+/* Weather card styling */
+.weather-card h3,
+.suitability-card h3,
+.recommendations-card h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-dark);
+  position: relative;
+}
+
+/* Ensures the weather card has proper background */
+.weather-card,
+.suitability-card,
+.recommendations-card {
+  background-color: var(--card-bg) !important;
+}
