@@ -32,7 +32,7 @@ const Login = () => {
       }
 
       // Make API call to login
-      const response = await axios.post("https://climate-eats-cuyx.vercel.app/api/users/login", {
+      const response = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASE_URL}/api/users/login`, {
         email: formData.email,
         password: formData.password,
       });
