@@ -417,7 +417,7 @@ const FoodEntry = () => {
       setWeatherData(newWeatherData);
 
       // Check food suitability
-      const foodResponse = await axios.post(`${API_BASE_URL}/api/foods/check`, {
+      const foodResponse = await axios.post(`${API_BASE_URL}api/foods/check`, {
         foodName: formData.foodName,
         location: formData.location,
         userId: localStorage.getItem("userId"),
