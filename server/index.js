@@ -54,13 +54,11 @@ app.listen(PORT, () => {
 const mongoUri = process.env.MONGO_URI
 
 mongoose
-  .connect(mongoUri)
-  .then(() => {
-    console.log("Connected to MongoDB");
+  .connect(mongoUri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
   })
-  .catch((error) => {
-    console.error("MongoDB connection error:", error);
-    console.log(
-      "Server running without MongoDB connection. Some features may not work."
-    );
+  .then(() => console.log("MongoDB connected successfully"))
+  .catch((err) => {
+    console.error("MongoDB connection error:", err.message);
   });
