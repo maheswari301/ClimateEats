@@ -62,8 +62,6 @@ const foods = [
 
 // Get MongoDB URI from environment or use default
 const mongoUri = process.env.MONGO_URI
-  ? process.env.MONGO_URI.replace("localhost", "127.0.0.1")
-  : "mongodb://127.0.0.1:27017/bmi_app";
 
 // Connect to MongoDB
 mongoose

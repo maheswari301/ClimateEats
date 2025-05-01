@@ -20,8 +20,6 @@ const sampleFood = {
 
 // MongoDB connection
 const mongoUri = process.env.MONGO_URI
-  ? process.env.MONGO_URI.replace("localhost", "127.0.0.1")
-  : "mongodb://127.0.0.1:27017/bmi_app";
 
 console.log("Connecting to MongoDB...");
 
