@@ -89,7 +89,7 @@ const Register = () => {
       console.log("Submitting user data:", userData);
 
       // Make API call to register user - using proxy
-      const response = await axios.post("/api/users", userData);
+      const response = await axios.post("https://climate-eats-cuyx.vercel.app/api/users", userData);
 
       console.log("Server response:", response.data);
 
