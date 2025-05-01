@@ -176,7 +176,7 @@ const FoodEntry = () => {
   // New function to fetch common foods from backend
   const fetchCommonFoodsFromBackend = async () => {
     try {
-      const response = await axios.get(`${API_BASE_URL}/api/foods/common`);
+      const response = await axios.get(`${API_BASE_URL}api/foods/common`);
       console.log("Common foods fetched from backend:", response.data);
 
       if (Array.isArray(response.data) && response.data.length > 0) {
@@ -236,7 +236,7 @@ const FoodEntry = () => {
       // Encode the location parameter to handle special characters
       const encodedLocation = encodeURIComponent(location);
       const response = await axios.get(
-        `${API_BASE_URL}/api/foods/recommend?location=${encodedLocation}`
+        `${API_BASE_URL}api/foods/recommend?location=${encodedLocation}`
       );
       console.log("Recommendations response:", response.data);
       return response.data;
@@ -396,7 +396,7 @@ const FoodEntry = () => {
       // Fetch weather data first
       console.log("Fetching weather for:", formData.location);
       const weatherResponse = await axios.get(
-        `${API_BASE_URL}/api/weather?city=${encodeURIComponent(
+        `${API_BASE_URL}api/weather?city=${encodeURIComponent(
           formData.location
         )}`
       );
