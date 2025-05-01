@@ -39,6 +39,10 @@ const userSchema = new mongoose.Schema(
       type: Number,
       required: [true, "Age is required"],
     },
+    height: {
+      type: Number,
+      required: [true, "Height is required"],
+    },    
     bmi: {
       type: Number,
       required: [true, "BMI is required"],

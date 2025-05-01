@@ -9,7 +9,11 @@ dotenv.config();
 
 const app = express();
 
-const allowedOrigins = ['https://climate-eats-cuyx.vercel.app'];
+const allowedOrigins = [
+  'https://climate-eats-cuyx.vercel.app',
+  'http://localhost:5173'
+];
+
 
 app.use(cors({
   origin: function (origin, callback) {

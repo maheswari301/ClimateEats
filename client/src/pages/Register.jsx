@@ -85,11 +85,17 @@ const Register = () => {
         age: Number(formData.age),
         height: Number(formData.height),
       };
-
+      
+      console.log("Converted values:", {
+        weight: Number(formData.weight),
+        height: Number(formData.height),
+        age: Number(formData.age),
+      });
+      
       console.log("Submitting user data:", userData);
 
       // Make API call to register user - using proxy
-      const response = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASE_URL}api/users`, userData);
+      const response = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASE_URL}/api/users`, userData);
 
       console.log("Server response:", response.data);
 
