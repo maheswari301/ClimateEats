@@ -146,15 +146,16 @@ const getWeatherByCity = async (req, res) => {
     );
 
     // Try to fetch from real API if key exists
-    if (process.env.WEATHER_API_KEY) {
+    weather_key = process.env.WEATHER_API_KEY
+    if (weather_key) {
       try {
         console.log(
-          `Attempting API call with key: ${process.env.WEATHER_API_KEY.substring(
+          `Attempting API call with key: ${weather_key.substring(
             0,
             5
           )}...`
         );
-        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.WEATHER_API_KEY}&units=metric`;
+        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weather_key}&units=metric`;
 
         const weatherResponse = await axios.get(apiUrl);
 
