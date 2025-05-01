@@ -4,7 +4,7 @@ import axios from "axios";
 import "../styles/FoodEntry.css";
 
 // Configure axios with the backend URL
-const API_BASE_URL = "http://localhost:5000"; // Your actual backend URL
+const API_BASE_URL = `${import.meta.env.VITE_REACT_APP_BACKEND_BASE_URL}`; // Your actual backend URL
 
 // Fallback food data as a last resort if API and database both fail
 const fallbackFoods = [
