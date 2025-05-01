@@ -157,11 +157,15 @@ const checkFoodSuitability = async (req, res) => {
 
     console.log(`Checking suitability for ${foodName} in ${location}`);
 
+    const FRONTEND_URL = process.env.FRONTEND_URL;
     // Get weather data for the location
     let weatherData;
     try {
+      // const weatherResponse = await axios.get(
+      //   `http://localhost:5000/api/weather?city=${encodeURIComponent(location)}`
+      // );
       const weatherResponse = await axios.get(
-        `http://localhost:5000/api/weather?city=${encodeURIComponent(location)}`
+        `https://climate-eats-cuyx.vercel.app/api/weather?city=${encodeURIComponent(location)}`
       );
       weatherData = weatherResponse.data;
       console.log("Weather data received:", weatherData);
