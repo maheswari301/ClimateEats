@@ -239,20 +239,37 @@ const FoodEntry = () => {
         `${API_BASE_URL}api/foods/recommend?location=${encodedLocation}`
       );
       console.log("Recommendations response:", response.data);
-      return response.data;
+  
+      // Shuffle and slice the foods to get exactly 6 random foods
+      const randomizedFoods = shuffle(response.data).slice(0, 6);
+  
+      return randomizedFoods;
     } catch (error) {
       console.error("Error fetching recommendations:", error);
-
+  
       // Use common foods from backend or fallback to hardcoded list
       console.log("Using common foods from database");
       setRecommendationsError(
         "API unavailable. Showing common foods from database."
       );
-
+  
       // Return common foods from backend if available, otherwise use fallback
-      return commonFoods.length > 0 ? commonFoods : fallbackFoods;
+      const foodsToReturn = commonFoods.length > 0 ? commonFoods : fallbackFoods;
+  
+      // Shuffle and slice to only return 6 foods
+      return shuffle(foodsToReturn).slice(0, 6);
     }
   };
+  
+  // Helper function to shuffle an array (Fisher-Yates algorithm)
+  const shuffle = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+    }
+    return array;
+  };
+  
 
   // Helper function to map weather conditions to categories
   const getWeatherCategory = (weatherData) => {
