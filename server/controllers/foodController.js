@@ -559,22 +559,52 @@ const getRecommendedFoods = async (req, res) => {
 
     console.log(`Getting food recommendations for ${location}`);
 
-    // Try to get foods from database
+    // Fetch weather data
+    let weatherData;
+    try {
+      const weatherResponse = await axios.get(
+        `https://climate-eats-cuyx.vercel.app/api/weather?city=${encodeURIComponent(location)}`
+      );
+      weatherData = weatherResponse.data;
+    } catch (error) {
+      console.error("Error fetching weather data:", error);
+      return res.status(500).json({ message: "Failed to fetch weather data for this location" });
+    }
+
+    // Determine weather category
+    const weatherCategory = getWeatherCategory(weatherData);
+    console.log(`Weather category: ${weatherCategory}`);
+
+    // Get foods from DB or fallback
     let foods = [];
     try {
       foods = await Food.find({}).lean();
     } catch (error) {
       console.error("Error querying database:", error);
-      // Continue with sample foods
     }
 
-    // If no foods in database, use sample foods
     if (!foods || foods.length === 0) {
       foods = sampleFoods;
     }
 
-    // Map the foods to the expected format
-    const mappedFoods = foods.map((food) => ({
+    // Separate matching weather and "Any" foods
+    const matchingWeatherFoods = foods.filter(
+      (f) => f.suitableWeather?.includes(weatherCategory)
+    );
+    const anyWeatherFoods = foods.filter(
+      (f) => f.suitableWeather?.includes("Any")
+    );
+
+    // Shuffle helper
+    const shuffle = (arr) => arr.sort(() => Math.random() - 0.5);
+
+    const selectedFoods = [
+      ...shuffle(matchingWeatherFoods).slice(0, 4),
+      ...shuffle(anyWeatherFoods).slice(0, 2),
+    ];
+
+    // Map selected foods
+    const mappedFoods = selectedFoods.map((food) => ({
       name: food.name,
       calorieLevel: getCaloricLevel(food.calories),
       weatherType:
@@ -595,6 +625,7 @@ const getRecommendedFoods = async (req, res) => {
     return res.status(500).json({ message: "Server error" });
   }
 };
+
 
 // Helper function to determine calorie level based on calorie count
 const getCaloricLevel = (calories) => {
