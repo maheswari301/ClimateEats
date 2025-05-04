@@ -592,12 +592,12 @@ const getRecommendedFoods = async (req, res) => {
       (f) => f.suitableWeather?.includes("Any")
     );
 
-    // Ensure you have at least 4 matching weather foods and 2 "Any" foods
-    const selectedWeatherFoods = shuffle(matchingWeatherFoods).slice(0, 4);
-    const selectedAnyFoods = shuffle(anyWeatherFoods).slice(0, 2);
+    // Ensure we have at least 5 matching weather foods and 1 "Any" food
+    const selectedWeatherFoods = shuffle(matchingWeatherFoods).slice(0, 5);
+    const selectedAnyFood = shuffle(anyWeatherFoods).slice(0, 1);
 
-    // Merge the selected foods (weather-specific first, then "Any" foods)
-    const selectedFoods = [...selectedWeatherFoods, ...selectedAnyFoods];
+    // Merge the selected foods (weather-specific first, then "Any" food)
+    const selectedFoods = [...selectedWeatherFoods, ...selectedAnyFood];
 
     // Map selected foods
     const mappedFoods = selectedFoods.map((food) => ({
