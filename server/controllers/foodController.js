@@ -245,9 +245,8 @@ const sampleFoods = [
   },
 ];
 
-// @desc    Check if a food is suitable for current weather and user's BMI
-// @route   POST /api/foods/check
-// @access  Private
+
+
 const checkFoodSuitability = async (req, res) => {
   try {
     const { foodName, location, userId } = req.body;
@@ -546,9 +545,7 @@ const getWeatherCategory = (weatherData) => {
   return "Any";
 };
 
-// @desc    Get food recommendations based on location
-// @route   GET /api/foods/recommend
-// @access  Private
+
 const getRecommendedFoods = async (req, res) => {
   try {
     const { location } = req.query;
@@ -587,21 +584,20 @@ const getRecommendedFoods = async (req, res) => {
       foods = sampleFoods;
     }
 
-    // Separate matching weather and "Any" foods
+    // Separate matching weather foods and "Any" foods
     const matchingWeatherFoods = foods.filter(
-      (f) => f.suitableWeather?.includes(weatherCategory)
+      (f) => f.suitableWeather?.includes(weatherCategory) && !f.suitableWeather.includes("Any")
     );
     const anyWeatherFoods = foods.filter(
       (f) => f.suitableWeather?.includes("Any")
     );
 
-    // Shuffle helper
-    const shuffle = (arr) => arr.sort(() => Math.random() - 0.5);
+    // Ensure you have at least 4 matching weather foods and 2 "Any" foods
+    const selectedWeatherFoods = shuffle(matchingWeatherFoods).slice(0, 4);
+    const selectedAnyFoods = shuffle(anyWeatherFoods).slice(0, 2);
 
-    const selectedFoods = [
-      ...shuffle(matchingWeatherFoods).slice(0, 4),
-      ...shuffle(anyWeatherFoods).slice(0, 2),
-    ];
+    // Merge the selected foods (weather-specific first, then "Any" foods)
+    const selectedFoods = [...selectedWeatherFoods, ...selectedAnyFoods];
 
     // Map selected foods
     const mappedFoods = selectedFoods.map((food) => ({
@@ -625,6 +621,7 @@ const getRecommendedFoods = async (req, res) => {
     return res.status(500).json({ message: "Server error" });
   }
 };
+
 
 
 // Helper function to determine calorie level based on calorie count
